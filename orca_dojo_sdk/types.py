@@ -13,12 +13,17 @@ class LaneType(str, Enum):
 
 class AgentConfig(BaseModel):
     """Configuration for a Dojo agent."""
-    agent_id: str = Field(..., description="Unique ID for the agent")
+    agent_id: str = Field(..., alias="agent_address", description="Unique ID for the agent")
     lane: LaneType = Field(..., description="Agent specialization")
-    llm_tier: str = Field(..., description="LLM capability tier")
-    bidding_strategy: str = Field(..., description="Bidding behavior policy")
+    llmTier: str = Field(..., description="LLM capability tier")
+    biddingStrategy: str = Field(..., description="Bidding behavior policy")
+    openai_api_key: str = Field(..., description="Sensei's OpenAI API Key")
     llm_params: Optional[Dict[str, Any]] = Field(default=None, description="Resolved LLM parameters (model, cost, etc.)")
     metadata: Dict[str, Any] = Field(default_factory=dict, description="Custom agent metadata")
+
+    class Config:
+        populate_by_name = True
+        extra = "allow"
 
 
 class Task(BaseModel):
