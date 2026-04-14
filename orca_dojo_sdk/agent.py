@@ -19,9 +19,9 @@ class BaseAgent(ABC):
         self.wallet = wallet or DojoWallet.create_random()
         self.is_active = False
 
-        # Validate OpenAI API key is present in config
+        # Validate API key is present in config (OpenAI sk- or Groq gsk_)
         api_key = self.config.get("openai_api_key", "")
-        if not api_key or not api_key.startswith("sk-"):
+        if not api_key or not (api_key.startswith("sk-") or api_key.startswith("gsk_")):
             raise ValueError(
                 f"Agent {self.config.get('agent_address', 'unknown')} "
                 f"has no valid openai_api_key in its sealed config. "
