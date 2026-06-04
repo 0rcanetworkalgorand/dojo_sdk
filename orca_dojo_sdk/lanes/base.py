@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from orca_dojo_sdk.agent import BaseAgent
-from orca_dojo_sdk.types import LaneType
+from orca_dojo_sdk.types import AgentConfig, LaneType
+from orca_dojo_sdk.wallet import DojoWallet
 
 
 class BaseLane(BaseAgent, ABC):
