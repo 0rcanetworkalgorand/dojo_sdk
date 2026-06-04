@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Any, Optional
 from orca_dojo_sdk.types import AgentConfig, Task, TaskResult
 from orca_dojo_sdk.wallet import DojoWallet
 
