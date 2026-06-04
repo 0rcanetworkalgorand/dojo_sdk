@@ -9,6 +9,10 @@ orca_dojo_sdk.egg-info/SOURCES.txt
 orca_dojo_sdk.egg-info/dependency_links.txt
 orca_dojo_sdk.egg-info/requires.txt
 orca_dojo_sdk.egg-info/top_level.txt
+orca_dojo_sdk/contracts/CommitmentLockClient.py
+orca_dojo_sdk/contracts/DojoRegistryClient.py
+orca_dojo_sdk/contracts/EscrowVaultClient.py
+orca_dojo_sdk/contracts/PayoutSplitterClient.py
 orca_dojo_sdk/lanes/__init__.py
 orca_dojo_sdk/lanes/base.py
 orca_dojo_sdk/lanes/code.py
