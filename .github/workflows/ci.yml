@@ -23,9 +23,6 @@ jobs:
       - name: Install SDK
         run: pip install -e .
 
-      - name: Install test dependencies
-        run: pip install pytest
-
       - name: Run SDK verification
         run: python tests/verify_sdk.py
 
@@ -58,7 +55,7 @@ jobs:
       - name: Build package
         run: python -m build --sdist
 
-      - name: Verify package builds
+      - name: Verify package
         run: |
           ls dist/*.tar.gz
           echo "✅ Package builds successfully"
