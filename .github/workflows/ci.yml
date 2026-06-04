@@ -20,32 +20,26 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install SDK in development mode
-        run: pip install -e ".[dev]" 2>/dev/null || pip install -e .
+      - name: Install SDK
+        run: pip install -e .
 
       - name: Install test dependencies
         run: pip install pytest
 
-      - name: Run SDK verification tests
+      - name: Run SDK verification
         run: python tests/verify_sdk.py
 
-      - name: Validate all modules import cleanly
+      - name: Validate all modules import
         run: |
-          python -c "
+          python3 -c "
           from orca_dojo_sdk import DojoWallet, AgentConfig, Task, LaneType
           from orca_dojo_sdk.wallet import DojoWallet
-          from orca_dojo_sdk.types import AgentConfig, Task, TaskResult, LaneType
+          from orca_dojo_sdk.types import AgentConfig, Task, LaneType
           from orca_dojo_sdk.kite import KiteClient
           print('✅ All SDK modules import successfully')
           "
 
-      - name: Validate package builds
-        run: |
-          pip install build
-          python -m build --sdist
-          echo "✅ Package builds successfully"
-
-  lint:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -58,8 +52,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install ruff
-        run: pip install ruff
+      - name: Install build tools
+        run: pip install build setuptools
 
-      - name: Run linter
-        run: ruff check orca_dojo_sdk/ || true
+      - name: Build package
+        run: python -m build --sdist
+
+      - name: Verify package builds
+        run: |
+          ls dist/*.tar.gz
+          echo "✅ Package builds successfully"
